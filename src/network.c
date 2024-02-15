@@ -52,11 +52,16 @@ load_args get_base_args(network *net)
 
 network *load_network(char *cfg, char *weights, int clear)
 {
+    printf("load_network started\n");
     network *net = parse_network_cfg(cfg);
+    printf("parse_network_cfg done\n");
     if(weights && weights[0] != 0){
+        printf("load_weights called\n");
         load_weights(net, weights);
     }
     if(clear) (*net->seen) = 0;
+
+    printf("returns the network 'net' formed by parse_network_cfg\n");
     return net;
 }
 

@@ -418,86 +418,125 @@ int main(int argc, char **argv)
         cuda_set_device(gpu_index);
     }
 #endif
-
+    
     if (0 == strcmp(argv[1], "average")){
+        printf("average called\n");
         average(argc, argv);
     } else if (0 == strcmp(argv[1], "yolo")){
+        printf("run_yolo called\n");
         run_yolo(argc, argv);
     } else if (0 == strcmp(argv[1], "super")){
+        printf("run_super called\n");
         run_super(argc, argv);
     } else if (0 == strcmp(argv[1], "lsd")){
+        printf("run_lsd called\n");
         run_lsd(argc, argv);
     } else if (0 == strcmp(argv[1], "detector")){
+        printf("run_detector called\n");
         run_detector(argc, argv);
     } else if (0 == strcmp(argv[1], "detect")){
         float thresh = find_float_arg(argc, argv, "-thresh", .5);
         char *filename = (argc > 4) ? argv[4]: 0;
         char *outfile = find_char_arg(argc, argv, "-out", 0);
         int fullscreen = find_arg(argc, argv, "-fullscreen");
+        printf("test_detector called\n");
         test_detector("cfg/coco.data", argv[2], argv[3], filename, thresh, .5, outfile, fullscreen);
+        printf("test_detector done\n");
     } else if (0 == strcmp(argv[1], "cifar")){
+        printf("cifar called\n");
         run_cifar(argc, argv);
     } else if (0 == strcmp(argv[1], "go")){
+        printf("run_go called\n");
         run_go(argc, argv);
     } else if (0 == strcmp(argv[1], "rnn")){
+        printf("run_char_rnn called\n");
         run_char_rnn(argc, argv);
     } else if (0 == strcmp(argv[1], "coco")){
+        printf("run_coco called\n");
         run_coco(argc, argv);
     } else if (0 == strcmp(argv[1], "classify")){
+        printf("predict_classifier called\n");
         predict_classifier("cfg/imagenet1k.data", argv[2], argv[3], argv[4], 5);
     } else if (0 == strcmp(argv[1], "classifier")){
+        printf("run_classifier called\n");
         run_classifier(argc, argv);
     } else if (0 == strcmp(argv[1], "regressor")){
+        printf("run_regressor called\n");
         run_regressor(argc, argv);
     } else if (0 == strcmp(argv[1], "isegmenter")){
+        printf("run_isegmenter called\n");
         run_isegmenter(argc, argv);
     } else if (0 == strcmp(argv[1], "segmenter")){
+        printf("run_segmenter called\n");
         run_segmenter(argc, argv);
     } else if (0 == strcmp(argv[1], "art")){
+        printf("run_art called\n");
         run_art(argc, argv);
     } else if (0 == strcmp(argv[1], "tag")){
+        printf("run_tag called\n");
         run_tag(argc, argv);
     } else if (0 == strcmp(argv[1], "3d")){
+        printf("composite_3d called\n");
         composite_3d(argv[2], argv[3], argv[4], (argc > 5) ? atof(argv[5]) : 0);
     } else if (0 == strcmp(argv[1], "test")){
+        printf("test_resize called\n");
         test_resize(argv[2]);
     } else if (0 == strcmp(argv[1], "nightmare")){
+        printf("run_nightmare called\n");
         run_nightmare(argc, argv);
     } else if (0 == strcmp(argv[1], "rgbgr")){
+        printf("rgbgr_net called\n");
         rgbgr_net(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "reset")){
+        printf("reset_normalize_net called\n");
         reset_normalize_net(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "denormalize")){
+        printf("denormalize_net called\n");
         denormalize_net(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "statistics")){
+        printf("statistics_net called\n");
         statistics_net(argv[2], argv[3]);
     } else if (0 == strcmp(argv[1], "normalize")){
+        printf("normalize_net called\n");
         normalize_net(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "rescale")){
+        printf("rescale_net called\n");
         rescale_net(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "ops")){
+        printf("operations called\n");
         operations(argv[2]);
     } else if (0 == strcmp(argv[1], "speed")){
+        printf("speed called\n");
         speed(argv[2], (argc > 3 && argv[3]) ? atoi(argv[3]) : 0);
     } else if (0 == strcmp(argv[1], "oneoff")){
+        printf("oneoff called\n");
         oneoff(argv[2], argv[3], argv[4]);
     } else if (0 == strcmp(argv[1], "oneoff2")){
+        printf("oneoff2 called\n");
         oneoff2(argv[2], argv[3], argv[4], atoi(argv[5]));
     } else if (0 == strcmp(argv[1], "print")){
+        printf("print_weights called\n");
         print_weights(argv[2], argv[3], atoi(argv[4]));
     } else if (0 == strcmp(argv[1], "partial")){
+        printf("partial called\n");
         partial(argv[2], argv[3], argv[4], atoi(argv[5]));
     } else if (0 == strcmp(argv[1], "average")){
+        printf("average called\n");
         average(argc, argv);
     } else if (0 == strcmp(argv[1], "visualize")){
+        printf("visualize called\n");
         visualize(argv[2], (argc > 3) ? argv[3] : 0);
     } else if (0 == strcmp(argv[1], "mkimg")){
+        printf("mkimg called\n");
         mkimg(argv[2], argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]), argv[7]);
     } else if (0 == strcmp(argv[1], "imtest")){
+        printf("test_resize called\n");
         test_resize(argv[2]);
     } else {
         fprintf(stderr, "Not an option: %s\n", argv[1]);
     }
+
+    printf("end of main function\n");
     return 0;
 }
 

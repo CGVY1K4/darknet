@@ -150,6 +150,7 @@ void draw_label(image a, int r, int c, image label, const float *rgb)
 {
     int w = label.w;
     int h = label.h;
+    // printf("label\nwidth: %d, height: %d\n\n", w, h);
     if (r - h >= 0) r = r - h;
 
     int i, j, k;
@@ -252,10 +253,13 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
                     strcat(labelstr, ", ");
                     strcat(labelstr, names[j]);
                 }
+                // printf("labelstr: %s\n", labelstr);
+                if(strcmp(names[j], "person") == 0) printf("Person detected!\n");
                 printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
             }
         }
         if(class >= 0){
+            // printf("im.h: %d\n", im.h);
             int width = im.h * .006;
 
             /*
@@ -278,7 +282,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             rgb[1] = green;
             rgb[2] = blue;
             box b = dets[i].bbox;
-            //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
+            // printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
 
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
@@ -290,6 +294,12 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             if(top < 0) top = 0;
             if(bot > im.h-1) bot = im.h-1;
 
+            // printf("size\nleft: %d, top: %d, right: %d, bot: %d, width: %d\ncolor\nred: %f, green: %f, blue: %f\n", left, top, right, bot, width, red, green, blue);
+            int box_width, box_height;
+            box_width = abs(left-right);
+            box_height = abs(top-bot);
+            printf("width of box: %d, height of box: %d\n", box_width, box_height);
+            printf("size of box: %d\n\n", box_width*box_height);
             draw_box_width(im, left, top, right, bot, width, red, green, blue);
             if (alphabet) {
                 image label = get_label(alphabet, labelstr, (im.h*.03));
